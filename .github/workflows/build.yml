@@ -21,4 +21,12 @@ jobs:
           podman run --rm \
             -v ${{ github.workspace }}:/workspace \
             -w /workspace \
-            quay.io/ublue-os
+            quay.io/ublue-os/builder:latest build
+
+      - name: Log in to GitHub Container Registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | podman login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Tag and Push image
+        run: |
+          podman tag localhost/localhost/void-os:latest ghcr.io/${{ github.repository_owner }}/void-os:latest
+          podman push ghcr.io/${{ github.repository_owner }}/void-os:latest
