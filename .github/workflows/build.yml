@@ -8,14 +8,17 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up Podman
+      - name: Install Podman
         uses: redhat-actions/podman-installer@v1
 
       - name: Build image
         run: |
           podman run --rm \
             -v ${{ github.workspace }}:/workspace \
+            -w /workspace \
+            quay.io/ublue-os
