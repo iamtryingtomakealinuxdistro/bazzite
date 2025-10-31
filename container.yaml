@@ -1,0 +1,14 @@
+packages:
+  - steam
+  - lutris
+  - heroic
+  - gamemode
+  - mangohud
+  - vkbasalt
+  - retroarch
+  - dolphin-emu
+  - pcsx2
+  - flatpak
+  - wine
+  - winetricks
+  - mesa-dri-drivers
