@@ -9,14 +9,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-      - name: Install dependencies
-        run: pip install pyyaml
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Podman
+        uses: redhat-actions/podman-installer@v1
+
       - name: Build image
         run: |
-          echo "Building image..."
-          # Add your build logic here
+          podman run --rm \
+            -v ${{ github.workspace }}:/workspace \
